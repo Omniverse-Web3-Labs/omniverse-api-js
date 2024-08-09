@@ -12,7 +12,6 @@
     "clean": "rm -rf dist",
     "build": "tsc -p tsconfig.json"
   },
-  "main": "dist/index.js",
   "keywords": [
     "JS",
     "JavaScript",
