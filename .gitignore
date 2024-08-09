@@ -4,5 +4,4 @@ fileout.log
 .state
 *.js
 *.lock
-dist
 package-lock.json
