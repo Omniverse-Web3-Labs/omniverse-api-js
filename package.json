@@ -4,14 +4,15 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Omniverse-Web3-Labs/omniverse-sdk-js.git"
+    "url": "git+https://github.com/Omniverse-Web3-Labs/omniverse-api-js.git"
   },
-  "homepage": "https://github.com/Omniverse-Web3-Labs/omniverse-sdk-js",
+  "homepage": "https://github.com/Omniverse-Web3-Labs/omniverse-api-js",
   "scripts": {
     "test": "npm run build && mocha --bail --exit --require ts-node/register --watch-extensions ts 'tests/*.spec.ts'",
     "clean": "rm -rf dist",
     "build": "tsc -p tsconfig.json"
   },
+  "main": "dist/index.js",
   "keywords": [
     "JS",
     "JavaScript",
