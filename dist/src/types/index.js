@@ -34,7 +34,7 @@ exports.ABI_DEPLOY_TYPE = {
                 },
                 {
                     internalType: 'uint128',
-                    name: 'limit',
+                    name: 'mintAmount',
                     type: 'uint128',
                 },
                 {
