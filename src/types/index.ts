@@ -14,7 +14,7 @@ export type TokenMetadata = {
   salt: string;
   name: string;
   deployer: string;
-  limit: string;
+  mintAmount: string;
   price: string;
   totalSupply: string;
 };
@@ -82,7 +82,7 @@ export type TokenInfo = {
   name: string;
   amount: string;
   assetId: string;
-  limit: string;
+  mintAmount: string;
   deployTime: number;
   progress: number;
   holders: number;
@@ -93,7 +93,7 @@ export type BasicTokenInfo = {
   assetId: string;
   deployTime: number;
   holders: number;
-  limit: string;
+  mintAmount: string;
   name: string;
   progress: number;
 };
@@ -102,7 +102,7 @@ export type TokenMetadataDetail = {
   salt: string;
   name: string;
   deployer: string;
-  limit: string;
+  mintAmount: string;
   current_supply: string;
   price: string;
   totalSupply: string;
@@ -220,7 +220,7 @@ export const ABI_DEPLOY_TYPE = {
         },
         {
           internalType: 'uint128',
-          name: 'limit',
+          name: 'mintAmount',
           type: 'uint128',
         },
         {
