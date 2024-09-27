@@ -1,14 +1,11 @@
 import { Signer } from './Signer';
-import * as fs from 'fs';
 import { secp256k1 } from '@noble/curves/secp256k1';
-import { hexStringtoBytesArray } from '../utils';
 
 export class LocalSigner implements Signer {
   privateKey: Uint8Array;
 
-  constructor(secretFile: fs.PathLike) {
-    let secret = fs.readFileSync(secretFile, 'utf-8');
-    this.privateKey = hexStringtoBytesArray(secret);
+  constructor(privateKey: Uint8Array) {
+    this.privateKey = privateKey;
   }
 
   async sign(hash: Uint8Array): Promise<string> {

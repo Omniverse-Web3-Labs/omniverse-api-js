@@ -1,8 +1,7 @@
 import { Signer } from './Signer';
-import * as fs from 'fs';
 export declare class LocalSigner implements Signer {
     privateKey: Uint8Array;
-    constructor(secretFile: fs.PathLike);
+    constructor(privateKey: Uint8Array);
     sign(hash: Uint8Array): Promise<string>;
     /**
      * The signer omnvierse address
