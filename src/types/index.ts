@@ -177,6 +177,7 @@ export type LatestInformation = {
   blockHeight: number;
   totalTransactionNumber: number;
   tokenTypeNumber: number;
+  latestBatchId: number;
   midGasPrice: string;
 };
 

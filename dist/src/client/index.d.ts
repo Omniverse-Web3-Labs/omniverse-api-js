@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { BasicBlockInformation, BasicTokenInfo, BasicTransaction, BlockDetail, LatestInformation, NetworkParameters, PagedList, TokenDetail, TokenInfo, UTXOSet } from '../types';
-import { TokenMetadata, Output, EIP712Domain, Deploy } from '../types/index';
+import { TokenMetadata, Output, EIP712Domain } from '../types/index';
 import { Signer } from '../signer';
 import { TransactionDetail } from '../types/index';
 import { OmniverseDeploy, OmniverseMint, OmniverseTransfer } from '../transaction';
@@ -179,7 +179,6 @@ export declare class OmniverseClient {
      * @returns {string} A signature of omniverse transaction
      */
     signTx(tx: OmniverseDeploy | OmniverseMint | OmniverseTransfer, signer?: Signer): Promise<OmniverseDeploy | OmniverseMint | OmniverseTransfer>;
-    test(tx: Deploy): void;
 }
 /**
  * Create an instance of Omniverse client

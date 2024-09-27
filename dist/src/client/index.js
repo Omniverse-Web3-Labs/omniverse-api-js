@@ -333,7 +333,6 @@ class OmniverseClient {
      */
     signTx(tx, signer) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(this.eip712Domain);
             if (!this.eip712Domain) {
                 throw Error('The eip712Domain is not configured.');
             }
@@ -349,10 +348,6 @@ class OmniverseClient {
             }
             return tx;
         });
-    }
-    test(tx) {
-        let omniTx = tx;
-        console.log(omniTx);
     }
 }
 exports.OmniverseClient = OmniverseClient;

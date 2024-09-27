@@ -363,7 +363,6 @@ export class OmniverseClient {
     tx: OmniverseDeploy | OmniverseMint | OmniverseTransfer,
     signer?: Signer,
   ): Promise<OmniverseDeploy | OmniverseMint | OmniverseTransfer> {
-    console.log(this.eip712Domain);
     if (!this.eip712Domain) {
       throw Error('The eip712Domain is not configured.');
     }
@@ -377,11 +376,6 @@ export class OmniverseClient {
       tx.signature = await this.signer.sign(hash);
     }
     return tx;
-  }
-
-  public test(tx: Deploy) {
-    let omniTx = tx as OmniverseDeploy;
-    console.log(omniTx);
   }
 }
 
