@@ -6,6 +6,7 @@ import {
   ABI_TRANSFER_TYPE,
   Transfer,
 } from '../types';
+import { toObject } from '../utils';
 import { TransactionBase } from './TransactionBase';
 import { TypedDataUtils } from 'ethers-eip712';
 import { decodeParameter, encodeParameter } from 'web3-eth-abi';
@@ -20,7 +21,8 @@ export default class OmniverseTransfer extends TransactionBase {
     try {
       let transfer;
       if (typeof tx == 'string') {
-        transfer = decodeParameter(ABI_TRANSFER_TYPE, tx) as Transfer;
+        let decodeData = decodeParameter(ABI_TRANSFER_TYPE, tx);
+        transfer = toObject(decodeData) as Transfer;
       } else {
         transfer = tx;
       }

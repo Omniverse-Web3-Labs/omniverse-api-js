@@ -306,7 +306,7 @@ class OmniverseClient {
      *
      * @returns {string} The omniverse transaction id
      */
-    sendTransaction(signedTx) {
+    sendTransaction(signedTx, synchronizer_signature) {
         return __awaiter(this, void 0, void 0, function* () {
             let tx;
             if (signedTx.getTxType() == types_1.OmniTxType.Deploy) {
@@ -321,7 +321,8 @@ class OmniverseClient {
                 let mint = signedTx;
                 tx = Object.assign(Object.assign({}, mint), { type: 'Transfer' });
             }
-            return yield this.rpc('sendTransaction', [tx]);
+            let args = synchronizer_signature ? [tx, synchronizer_signature] : [tx];
+            return yield this.rpc('sendTransaction', args);
         });
     }
     /**

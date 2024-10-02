@@ -18,8 +18,8 @@ export default class OmniverseDeploy extends TransactionBase {
     try {
       let deploy;
       if (typeof tx === 'string') {
-        let decodata = decodeParameter(ABI_DEPLOY_TYPE, tx);
-        deploy = toObject(decodata) as Deploy;
+        let decodeData = decodeParameter(ABI_DEPLOY_TYPE, tx);
+        deploy = toObject(decodeData) as Deploy;
       } else {
         deploy = tx;
       }

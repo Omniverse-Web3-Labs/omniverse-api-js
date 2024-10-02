@@ -170,7 +170,7 @@ export declare class OmniverseClient {
      *
      * @returns {string} The omniverse transaction id
      */
-    sendTransaction(signedTx: OmniverseDeploy | OmniverseMint | OmniverseTransfer): Promise<string>;
+    sendTransaction(signedTx: OmniverseDeploy | OmniverseMint | OmniverseTransfer, synchronizer_signature?: string): Promise<string>;
     /**
      * Sign for omniverse transaction
      *

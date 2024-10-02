@@ -11,8 +11,8 @@ class OmniverseDeploy extends TransactionBase_1.TransactionBase {
         try {
             let deploy;
             if (typeof tx === 'string') {
-                let decodata = (0, web3_eth_abi_1.decodeParameter)(types_1.ABI_DEPLOY_TYPE, tx);
-                deploy = (0, utils_1.toObject)(decodata);
+                let decodeData = (0, web3_eth_abi_1.decodeParameter)(types_1.ABI_DEPLOY_TYPE, tx);
+                deploy = (0, utils_1.toObject)(decodeData);
             }
             else {
                 deploy = tx;

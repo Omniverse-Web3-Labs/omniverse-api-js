@@ -5,6 +5,7 @@ import {
   ABI_MINT_TYPE,
   Mint,
 } from '../types';
+import { toObject } from '../utils';
 import { TransactionBase } from './TransactionBase';
 import { TypedDataUtils } from 'ethers-eip712';
 import { decodeParameter, encodeParameter } from 'web3-eth-abi';
@@ -18,7 +19,8 @@ export default class OmniverseMint extends TransactionBase {
     try {
       let mint;
       if (typeof tx == 'string') {
-        mint = decodeParameter(ABI_MINT_TYPE, tx) as Mint;
+        let decodeData = decodeParameter(ABI_MINT_TYPE, tx);
+        mint = toObject(decodeData) as Mint;
       } else {
         mint = tx;
       }

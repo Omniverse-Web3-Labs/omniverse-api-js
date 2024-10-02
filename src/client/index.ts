@@ -328,6 +328,7 @@ export class OmniverseClient {
    */
   public async sendTransaction(
     signedTx: OmniverseDeploy | OmniverseMint | OmniverseTransfer,
+    synchronizer_signature?: string,
   ): Promise<string> {
     let tx;
     if (signedTx.getTxType() == OmniTxType.Deploy) {
@@ -349,7 +350,8 @@ export class OmniverseClient {
         type: 'Transfer',
       };
     }
-    return await this.rpc('sendTransaction', [tx]);
+    let args = synchronizer_signature ? [tx, synchronizer_signature] : [tx];
+    return await this.rpc('sendTransaction', args);
   }
 
   /**

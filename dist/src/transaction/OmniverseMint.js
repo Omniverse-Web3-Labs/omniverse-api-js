@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const types_1 = require("../types");
+const utils_1 = require("../utils");
 const TransactionBase_1 = require("./TransactionBase");
 const ethers_eip712_1 = require("ethers-eip712");
 const web3_eth_abi_1 = require("web3-eth-abi");
@@ -10,7 +11,8 @@ class OmniverseMint extends TransactionBase_1.TransactionBase {
         try {
             let mint;
             if (typeof tx == 'string') {
-                mint = (0, web3_eth_abi_1.decodeParameter)(types_1.ABI_MINT_TYPE, tx);
+                let decodeData = (0, web3_eth_abi_1.decodeParameter)(types_1.ABI_MINT_TYPE, tx);
+                mint = (0, utils_1.toObject)(decodeData);
             }
             else {
                 mint = tx;
