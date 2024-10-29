@@ -86,11 +86,15 @@ export class OmniverseClient {
    * Pre-fetch the UTXOs associated with the mint transaction.
    *
    * @param {TokenMetadata} metadata The asset metadata
+   * @param {Array<Output>} outputs Optinal, transfer fee token to `outputs`
    *
    * @returns {OmnvierseDeploy} The omniverse transaction
    */
-  public async preDeploy(metadata: TokenMetadata): Promise<OmniverseDeploy> {
-    let result = (await this.rpc('preDeploy', [metadata])) as Deploy;
+  public async preDeploy(
+    metadata: TokenMetadata,
+    outputs?: Array<Output>,
+  ): Promise<OmniverseDeploy> {
+    let result = (await this.rpc('preDeploy', [metadata, outputs])) as Deploy;
     result.metadata = metadata;
     return new OmniverseDeploy(result);
   }
@@ -260,28 +264,34 @@ export class OmniverseClient {
    *
    * @param {string} account The user omniverse account
    * @param {number} page The user transaction list on `page`th, 25 transactions/page
+   * @param {number} txType The transaction type: `deploy`, `mint` or `transfer`
    *
    * @returns {PagedList<BasicTransaction>} The user latest transaction information on `page`th
    */
   public async getLatestUserTransaction(
     account: string,
-    page?: number,
+    page: number,
+    txType?: string,
   ): Promise<PagedList<BasicTransaction>> {
     if (page == undefined || page < 1) {
       page = 1;
     }
-    return this.rpc('getLatestUserTransactions', [account, page]);
+    return this.rpc('getLatestUserTransactions', [account, page, txType]);
   }
 
   /**
    * Get user token list
    *
    * @param {string} account The user omniverse account
+   * @param {page} page Optinal, The user transaction list on `page`th, 25 transactions/page
    *
    * @returns {PagedList<BasicTransaction>} The user token list
    */
-  public async getAccountInfo(account: string): Promise<Array<BasicTokenInfo>> {
-    return this.rpc('getAccountInfo', [account]);
+  public async getAccountInfo(
+    account: string,
+    page?: number,
+  ): Promise<Array<BasicTokenInfo>> {
+    return this.rpc('getAccountInfo', [account, page]);
   }
 
   /**

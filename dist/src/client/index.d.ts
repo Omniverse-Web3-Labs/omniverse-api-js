@@ -23,10 +23,11 @@ export declare class OmniverseClient {
      * Pre-fetch the UTXOs associated with the mint transaction.
      *
      * @param {TokenMetadata} metadata The asset metadata
+     * @param {Array<Output>} outputs Optinal, transfer fee token to `outputs`
      *
      * @returns {OmnvierseDeploy} The omniverse transaction
      */
-    preDeploy(metadata: TokenMetadata): Promise<OmniverseDeploy>;
+    preDeploy(metadata: TokenMetadata, outputs?: Array<Output>): Promise<OmniverseDeploy>;
     /**
      * Pre-fetch the UTXOs associated with the mint transaction.
      *
@@ -126,18 +127,20 @@ export declare class OmniverseClient {
      *
      * @param {string} account The user omniverse account
      * @param {number} page The user transaction list on `page`th, 25 transactions/page
+     * @param {number} txType The transaction type: `deploy`, `mint` or `transfer`
      *
      * @returns {PagedList<BasicTransaction>} The user latest transaction information on `page`th
      */
-    getLatestUserTransaction(account: string, page?: number): Promise<PagedList<BasicTransaction>>;
+    getLatestUserTransaction(account: string, page: number, txType?: string): Promise<PagedList<BasicTransaction>>;
     /**
      * Get user token list
      *
      * @param {string} account The user omniverse account
+     * @param {page} page Optinal, The user transaction list on `page`th, 25 transactions/page
      *
      * @returns {PagedList<BasicTransaction>} The user token list
      */
-    getAccountInfo(account: string): Promise<Array<BasicTokenInfo>>;
+    getAccountInfo(account: string, page?: number): Promise<Array<BasicTokenInfo>>;
     /**
      * Get user token list
      *
