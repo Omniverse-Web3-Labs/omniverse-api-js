@@ -45,6 +45,7 @@ export type EIP712Domain = {
 };
 export type AssetsParameters = {
     decimals: number;
+    price: string;
 };
 export type FeeParameters = {
     assetId: string;
