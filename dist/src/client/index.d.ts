@@ -140,7 +140,7 @@ export declare class OmniverseClient {
      *
      * @returns {PagedList<BasicTransaction>} The user token list
      */
-    getAccountInfo(account: string, page?: number): Promise<Array<BasicTokenInfo>>;
+    getAccountInfo(account: string, page?: number): Promise<PagedList<BasicTokenInfo>>;
     /**
      * Get user token list
      *

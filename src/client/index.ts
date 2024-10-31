@@ -290,7 +290,7 @@ export class OmniverseClient {
   public async getAccountInfo(
     account: string,
     page?: number,
-  ): Promise<Array<BasicTokenInfo>> {
+  ): Promise<PagedList<BasicTokenInfo>> {
     return this.rpc('getAccountInfo', [account, page]);
   }
 
