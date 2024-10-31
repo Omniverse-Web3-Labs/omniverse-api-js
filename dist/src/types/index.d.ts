@@ -99,6 +99,8 @@ export type TokenMetadataDetail = {
 export type TokenDetail = {
     assetId: string;
     metadata: TokenMetadataDetail;
+    holder: number;
+    txNumber: number;
 };
 export type BasicCommitment = {
     chainName: string;
