@@ -18,9 +18,11 @@ class OmniverseDeploy extends TransactionBase_1.TransactionBase {
                 deploy = tx;
             }
             this.metadata = deploy.metadata;
+            this.outputs = deploy.outputs;
             this.feeInputs = deploy.feeInputs;
             this.feeOutputs = deploy.feeOutputs;
             this.signature = deploy.signature ? deploy.signature : this.signature;
+            this.gasPrice = deploy.gasPrice;
         }
         catch (e) {
             throw new Error('Transfer transaction data error');
@@ -36,14 +38,16 @@ class OmniverseDeploy extends TransactionBase_1.TransactionBase {
                     { name: 'verifyingContract', type: 'address' },
                 ],
                 Deploy: [
-                    { name: 'salt', type: 'bytes8' },
                     { name: 'name', type: 'string' },
                     { name: 'deployer', type: 'bytes32' },
+                    { name: 'mint_payee', type: 'bytes32' },
                     { name: 'mint_amount', type: 'uint128' },
                     { name: 'price', type: 'uint128' },
                     { name: 'total_supply', type: 'uint128' },
+                    { name: 'outputs', type: 'Output[]' },
                     { name: 'fee_inputs', type: 'Input[]' },
                     { name: 'fee_outputs', type: 'Output[]' },
+                    { name: 'gas_price', type: 'uint128' },
                 ],
                 Input: [
                     { name: 'txid', type: 'bytes32' },
@@ -59,14 +63,16 @@ class OmniverseDeploy extends TransactionBase_1.TransactionBase {
             primaryType: 'Deploy',
             domain: eip712Domain,
             message: {
-                salt: this.metadata.salt,
                 name: this.metadata.name,
                 deployer: this.metadata.deployer,
+                mint_payee: this.metadata.mintPayee,
                 total_supply: this.metadata.totalSupply,
                 mint_amount: this.metadata.mintAmount,
                 price: this.metadata.price,
+                outputs: this.outputs,
                 fee_inputs: this.feeInputs,
                 fee_outputs: this.feeOutputs,
+                gas_price: this.gasPrice,
             },
         };
         return ethers_eip712_1.TypedDataUtils.encodeDigest(typedData);

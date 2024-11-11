@@ -29,6 +29,7 @@ export default class OmniverseMint extends TransactionBase {
       this.feeInputs = mint.feeInputs;
       this.feeOutputs = mint.feeOutputs;
       this.signature = mint.signature ? mint.signature : this.signature;
+      this.gasPrice = mint.gasPrice;
     } catch (e) {
       throw new Error('Mint transaction data error');
     }
@@ -48,6 +49,7 @@ export default class OmniverseMint extends TransactionBase {
           { name: 'outputs', type: 'Output[]' },
           { name: 'fee_inputs', type: 'Input[]' },
           { name: 'fee_outputs', type: 'Output[]' },
+          { name: 'gas_price', type: 'uint128' },
         ],
         Input: [
           { name: 'txid', type: 'bytes32' },
@@ -67,6 +69,7 @@ export default class OmniverseMint extends TransactionBase {
         outputs: this.outputs,
         fee_inputs: this.feeInputs,
         fee_outputs: this.feeOutputs,
+        gas_price: this.gasPrice,
       },
     };
     return TypedDataUtils.encodeDigest(typedData);

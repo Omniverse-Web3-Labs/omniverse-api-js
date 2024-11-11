@@ -4,6 +4,7 @@ import {
   ABI_DEPLOY_TYPE,
   Deploy,
   TokenMetadata,
+  Output,
 } from '../types';
 import { toObject } from '../utils';
 import { TransactionBase } from './TransactionBase';
@@ -12,6 +13,7 @@ import { decodeParameter, encodeParameter } from 'web3-eth-abi';
 
 export default class OmniverseDeploy extends TransactionBase {
   metadata: TokenMetadata;
+  outputs: Array<Output>;
 
   constructor(tx: string | Deploy) {
     super();
@@ -24,9 +26,11 @@ export default class OmniverseDeploy extends TransactionBase {
         deploy = tx;
       }
       this.metadata = deploy.metadata;
+      this.outputs = deploy.outputs;
       this.feeInputs = deploy.feeInputs;
       this.feeOutputs = deploy.feeOutputs;
       this.signature = deploy.signature ? deploy.signature : this.signature;
+      this.gasPrice = deploy.gasPrice;
     } catch (e) {
       throw new Error('Transfer transaction data error');
     }
@@ -42,14 +46,16 @@ export default class OmniverseDeploy extends TransactionBase {
           { name: 'verifyingContract', type: 'address' },
         ],
         Deploy: [
-          { name: 'salt', type: 'bytes8' },
           { name: 'name', type: 'string' },
           { name: 'deployer', type: 'bytes32' },
+          { name: 'mint_payee', type: 'bytes32' },
           { name: 'mint_amount', type: 'uint128' },
           { name: 'price', type: 'uint128' },
           { name: 'total_supply', type: 'uint128' },
+          { name: 'outputs', type: 'Output[]' },
           { name: 'fee_inputs', type: 'Input[]' },
           { name: 'fee_outputs', type: 'Output[]' },
+          { name: 'gas_price', type: 'uint128' },
         ],
         Input: [
           { name: 'txid', type: 'bytes32' },
@@ -65,14 +71,16 @@ export default class OmniverseDeploy extends TransactionBase {
       primaryType: 'Deploy' as const,
       domain: eip712Domain,
       message: {
-        salt: this.metadata.salt,
         name: this.metadata.name,
         deployer: this.metadata.deployer,
+        mint_payee: this.metadata.mintPayee,
         total_supply: this.metadata.totalSupply,
         mint_amount: this.metadata.mintAmount,
         price: this.metadata.price,
+        outputs: this.outputs,
         fee_inputs: this.feeInputs,
         fee_outputs: this.feeOutputs,
+        gas_price: this.gasPrice,
       },
     };
     return TypedDataUtils.encodeDigest(typedData);

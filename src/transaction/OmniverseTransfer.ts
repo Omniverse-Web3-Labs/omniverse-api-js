@@ -32,6 +32,7 @@ export default class OmniverseTransfer extends TransactionBase {
       this.feeInputs = transfer.feeInputs;
       this.feeOutputs = transfer.feeOutputs;
       this.signature = transfer.signature;
+      this.gasPrice = transfer.gasPrice;
     } catch (e) {
       throw new Error('Transfer transaction data error');
     }
@@ -52,6 +53,7 @@ export default class OmniverseTransfer extends TransactionBase {
           { name: 'outputs', type: 'Output[]' },
           { name: 'fee_inputs', type: 'Input[]' },
           { name: 'fee_outputs', type: 'Output[]' },
+          { name: 'gas_price', type: 'uint128' },
         ],
         Input: [
           { name: 'txid', type: 'bytes32' },
@@ -72,6 +74,7 @@ export default class OmniverseTransfer extends TransactionBase {
         outputs: this.outputs,
         fee_inputs: this.feeInputs,
         fee_outputs: this.feeOutputs,
+        gas_price: this.gasPrice,
       },
     };
     return TypedDataUtils.encodeDigest(typedData);

@@ -6,6 +6,7 @@ class TransactionBase {
         this.feeInputs = [];
         this.feeOutputs = [];
         this.signature = '0x';
+        this.gasPrice = '0';
     }
 }
 exports.TransactionBase = TransactionBase;

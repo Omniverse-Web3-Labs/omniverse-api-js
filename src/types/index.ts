@@ -11,9 +11,9 @@ export type Output = {
 };
 
 export type TokenMetadata = {
-  salt: string;
   name: string;
   deployer: string;
+  mintPayee: string;
   mintAmount: string;
   price: string;
   totalSupply: string;
@@ -26,13 +26,16 @@ export type Transfer = {
   outputs: Array<Output>;
   feeInputs: Array<Input>;
   feeOutputs: Array<Output>;
+  gasPrice: string;
 };
 
 export type Deploy = {
   metadata: TokenMetadata;
   signature: string;
+  outputs: Array<Output>;
   feeInputs: Array<Input>;
   feeOutputs: Array<Output>;
+  gasPrice: string;
 };
 
 export type Mint = {
@@ -41,6 +44,7 @@ export type Mint = {
   outputs: Array<Output>;
   feeInputs: Array<Input>;
   feeOutputs: Array<Output>;
+  gasPrice: string;
 };
 
 export type EIP712Domain = {
@@ -100,11 +104,11 @@ export type BasicTokenInfo = {
 };
 
 export type TokenMetadataDetail = {
-  salt: string;
   name: string;
   deployer: string;
+  mintPayee: string;
   mintAmount: string;
-  current_supply: string;
+  currentSupply: string;
   price: string;
   totalSupply: string;
   timstamp: number;
@@ -203,11 +207,6 @@ export const ABI_DEPLOY_TYPE = {
     {
       components: [
         {
-          internalType: 'bytes8',
-          name: 'salt',
-          type: 'bytes8',
-        },
-        {
           internalType: 'string',
           name: 'name',
           type: 'string',
@@ -215,6 +214,11 @@ export const ABI_DEPLOY_TYPE = {
         {
           internalType: 'bytes32',
           name: 'deployer',
+          type: 'bytes32',
+        },
+        {
+          internalType: 'bytes32',
+          name: 'mintPayee',
           type: 'bytes32',
         },
         {
@@ -241,6 +245,23 @@ export const ABI_DEPLOY_TYPE = {
       internalType: 'bytes',
       name: 'signature',
       type: 'bytes',
+    },
+    {
+      components: [
+        {
+          internalType: 'bytes32',
+          name: 'address',
+          type: 'bytes32',
+        },
+        {
+          internalType: 'uint128',
+          name: 'amount',
+          type: 'uint128',
+        },
+      ],
+      internalType: 'struct Types.Output[]',
+      name: 'outputs',
+      type: 'tuple[]',
     },
     {
       components: [
@@ -285,6 +306,11 @@ export const ABI_DEPLOY_TYPE = {
       internalType: 'struct Types.Output[]',
       name: 'feeOutputs',
       type: 'tuple[]',
+    },
+    {
+      internalType: 'uint128',
+      name: 'gasPrice',
+      type: 'uint128',
     },
   ],
   internalType: 'struct Types.Deploy',
@@ -364,6 +390,11 @@ export const ABI_MINT_TYPE = {
       internalType: 'struct Types.Output[]',
       name: 'feeOutputs',
       type: 'tuple[]',
+    },
+    {
+      internalType: 'uint128',
+      name: 'gasPrice',
+      type: 'uint128',
     },
   ],
   internalType: 'struct Types.Mint',
@@ -470,6 +501,11 @@ export const ABI_TRANSFER_TYPE = {
       internalType: 'struct Types.Output[]',
       name: 'feeOutputs',
       type: 'tuple[]',
+    },
+    {
+      internalType: 'uint128',
+      name: 'gasPrice',
+      type: 'uint128',
     },
   ],
   internalType: 'struct Types.Transfer',

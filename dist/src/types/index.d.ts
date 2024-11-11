@@ -9,9 +9,9 @@ export type Output = {
     amount: string;
 };
 export type TokenMetadata = {
-    salt: string;
     name: string;
     deployer: string;
+    mintPayee: string;
     mintAmount: string;
     price: string;
     totalSupply: string;
@@ -23,12 +23,15 @@ export type Transfer = {
     outputs: Array<Output>;
     feeInputs: Array<Input>;
     feeOutputs: Array<Output>;
+    gasPrice: string;
 };
 export type Deploy = {
     metadata: TokenMetadata;
     signature: string;
+    outputs: Array<Output>;
     feeInputs: Array<Input>;
     feeOutputs: Array<Output>;
+    gasPrice: string;
 };
 export type Mint = {
     assetId: string;
@@ -36,6 +39,7 @@ export type Mint = {
     outputs: Array<Output>;
     feeInputs: Array<Input>;
     feeOutputs: Array<Output>;
+    gasPrice: string;
 };
 export type EIP712Domain = {
     name: string;
@@ -86,11 +90,11 @@ export type BasicTokenInfo = {
     progress: number;
 };
 export type TokenMetadataDetail = {
-    salt: string;
     name: string;
     deployer: string;
+    mintPayee: string;
     mintAmount: string;
-    current_supply: string;
+    currentSupply: string;
     price: string;
     totalSupply: string;
     timstamp: number;

@@ -17,6 +17,7 @@ export declare abstract class TransactionBase implements OmniverseTx {
     feeInputs: Array<Input>;
     feeOutputs: Array<Output>;
     signature: string;
+    gasPrice: string;
     abstract getEIP712Hash(eip712Domain: EIP712Domain): Uint8Array;
     abstract getTxType(): OmniTxType;
     abstract encode(): string;

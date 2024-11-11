@@ -13,11 +13,6 @@ exports.ABI_DEPLOY_TYPE = {
         {
             components: [
                 {
-                    internalType: 'bytes8',
-                    name: 'salt',
-                    type: 'bytes8',
-                },
-                {
                     internalType: 'string',
                     name: 'name',
                     type: 'string',
@@ -25,6 +20,11 @@ exports.ABI_DEPLOY_TYPE = {
                 {
                     internalType: 'bytes32',
                     name: 'deployer',
+                    type: 'bytes32',
+                },
+                {
+                    internalType: 'bytes32',
+                    name: 'mintPayee',
                     type: 'bytes32',
                 },
                 {
@@ -51,6 +51,23 @@ exports.ABI_DEPLOY_TYPE = {
             internalType: 'bytes',
             name: 'signature',
             type: 'bytes',
+        },
+        {
+            components: [
+                {
+                    internalType: 'bytes32',
+                    name: 'address',
+                    type: 'bytes32',
+                },
+                {
+                    internalType: 'uint128',
+                    name: 'amount',
+                    type: 'uint128',
+                },
+            ],
+            internalType: 'struct Types.Output[]',
+            name: 'outputs',
+            type: 'tuple[]',
         },
         {
             components: [
@@ -95,6 +112,11 @@ exports.ABI_DEPLOY_TYPE = {
             internalType: 'struct Types.Output[]',
             name: 'feeOutputs',
             type: 'tuple[]',
+        },
+        {
+            internalType: 'uint128',
+            name: 'gasPrice',
+            type: 'uint128',
         },
     ],
     internalType: 'struct Types.Deploy',
@@ -173,6 +195,11 @@ exports.ABI_MINT_TYPE = {
             internalType: 'struct Types.Output[]',
             name: 'feeOutputs',
             type: 'tuple[]',
+        },
+        {
+            internalType: 'uint128',
+            name: 'gasPrice',
+            type: 'uint128',
         },
     ],
     internalType: 'struct Types.Mint',
@@ -278,6 +305,11 @@ exports.ABI_TRANSFER_TYPE = {
             internalType: 'struct Types.Output[]',
             name: 'feeOutputs',
             type: 'tuple[]',
+        },
+        {
+            internalType: 'uint128',
+            name: 'gasPrice',
+            type: 'uint128',
         },
     ],
     internalType: 'struct Types.Transfer',
